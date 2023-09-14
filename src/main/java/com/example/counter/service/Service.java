@@ -7,9 +7,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
-public class Service{
-    public Map<Character, Long> counter(String string){
-        return Arrays.stream(string.chars().mapToObj(c-> (char)c).toArray(Character[]::new))
+public class Service {
+    public Map<Character, Long> countSymbol(String string) {
+        return Arrays.stream(string.chars().mapToObj(c -> (char) c).toArray(Character[]::new))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
@@ -17,7 +17,9 @@ public class Service{
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
-                        (k,v) -> { throw new AssertionError();},
+                        (k, v) -> {
+                            throw new AssertionError();
+                        },
                         LinkedHashMap::new));
     }
 }
