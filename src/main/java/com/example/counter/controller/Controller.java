@@ -16,7 +16,7 @@ public class Controller {
     private Service service;
 
     @GetMapping("/counter")
-    private Map<String, Long> counter (@RequestParam(name = "input") String input){
+    private Map<Character, Long> counter (@RequestParam(name = "input") String input){
         return service.counter(input);
     }
 }

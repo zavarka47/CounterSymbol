@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class Service{
-    public Map<String, Long> counter(String string){
-        return Arrays.stream(string.split(""))
+    public Map<Character, Long> counter(String string){
+        return Arrays.stream(string.chars().mapToObj(c-> (char)c).toArray(Character[]::new))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .sorted(Map.Entry.<Character, Long>comparingByValue().reversed())
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
