@@ -1,4 +1,4 @@
-package com.example.Counter;
+package com.example.counter;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;

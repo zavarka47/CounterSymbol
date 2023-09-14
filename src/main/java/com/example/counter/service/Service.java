@@ -1,23 +1,23 @@
-package com.example.Counter.Service.Impl.Impl;
-
-import com.example.Counter.Service.Impl.Service;
+package com.example.counter.service;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
-public class ServiceImpl implements Service {
-    @Override
-    public List<String> counter(String string){
+public class Service{
+    public Map<String, Long> counter(String string){
         return Arrays.stream(string.split(""))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
-                .map(s -> (s.getKey() + " - " + s.getValue()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (k,v) -> { throw new AssertionError();},
+                        LinkedHashMap::new));
     }
 }
